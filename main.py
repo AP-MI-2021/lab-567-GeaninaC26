@@ -1,8 +1,10 @@
 from Tests.test_crud import test_crud
+from UserInterface.console import run_ui
 
 
 def main():
-    pass
+    vanzari = []
+    vanzari = run_ui(vanzari)
 
 
 if __name__ == '__main__':
