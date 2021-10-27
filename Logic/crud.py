@@ -24,14 +24,14 @@ def read(lst_vanzari, id_vanzare: int = None):
     :return: vanzarea cu id-ul id_vanzare, sau None daca vanzarea nu exista
     """
     for vanzare in lst_vanzari:
-        if int(vanzare['id']) == id_vanzare:
+        if int(get_id(vanzare)) == id_vanzare:
             return vanzare
     return None
 
 
 def update(lst_vanzari, new_vanzare):
     """
-    Actualizeaza o vanzare
+    Actualizeaza o
     :param lst_vanzari: lista de vanzari
     :param new_vanzare: vanzarea cu care se va actualiza - id-ul trebuie sa fie unul existent
     :return: lista cu vanzarile actualizare

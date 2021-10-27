@@ -2,8 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="5ac0e65d-aa9e-473e-afc0-0116eac78d5e" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Domain/Vanzare.py" beforeDir="false" afterPath="$PROJECT_DIR$/Domain/Vanzare.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Logic/crud.py" beforeDir="false" afterPath="$PROJECT_DIR$/Logic/crud.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tests/test_crud.py" beforeDir="false" afterPath="$PROJECT_DIR$/Tests/test_crud.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
