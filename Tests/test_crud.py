@@ -22,7 +22,7 @@ def test_create():
 def test_read():
     vanzari = get_data()
     some_v = vanzari[2]
-    #assert read(vanzari, get_id(some_v)) == some_v
+    assert read(vanzari, get_id(some_v)) == some_v
 
 
 def test_update():

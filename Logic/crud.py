@@ -16,7 +16,7 @@ def create(lst_vanzari, id_vanzare, titlu, gen, pret, reducere):
     return lst_vanzari + [vanzare]
 
 
-def read(lst_vanzari, id_vanzare: int=None):
+def read(lst_vanzari, id_vanzare: int = None):
     """
     Citeste vanzarea
     :param lst_vanzari: lista de vanzari
@@ -24,7 +24,7 @@ def read(lst_vanzari, id_vanzare: int=None):
     :return: vanzarea cu id-ul id_vanzare, sau None daca vanzarea nu exista
     """
     for vanzare in lst_vanzari:
-        if vanzare['id'] == id_vanzare:
+        if int(vanzare['id']) == id_vanzare:
             return vanzare
     return None
 
