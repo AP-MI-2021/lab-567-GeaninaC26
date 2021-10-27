@@ -23,13 +23,10 @@ def read(lst_vanzari, id_vanzare: int=None):
     :param id_vanzare: id-ul vanzarii pe care dorim sa o citim
     :return: vanzarea cu id-ul id_vanzare, sau None daca vanzarea nu exista
     """
-    vanzare_cu_id = None
     for vanzare in lst_vanzari:
         if vanzare['id'] == id_vanzare:
-            vanzare_cu_id = id_vanzare
-        if vanzare_cu_id:
-            return vanzare_cu_id
-    return lst_vanzari
+            return vanzare
+    return None
 
 
 def update(lst_vanzari, new_vanzare):

@@ -40,7 +40,7 @@ def test_delete():
     v_deleted = read(vanzari, to_delete)
     deleted = delete(vanzari,to_delete)
     assert v_deleted not in deleted
-    assert v_deleted  not in vanzari
+    assert v_deleted in vanzari
     assert len(deleted) == len(vanzari) - 1
 
 

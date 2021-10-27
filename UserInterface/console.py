@@ -28,10 +28,13 @@ def handle_show_all(vanzari):
 def handle_show_details(vanzari):
     id_vanzare = int(input('Dati id-ul vanzarii: '))
     vanzare = read(vanzari, id_vanzare)
-    print(f'Titlu: {get_titlu(vanzare)}')
-    print(f'Gen: {get_gen(vanzare)}')
-    print(f'Pret: {get_pret(vanzare)}')
-    print(f'Reducere: {get_reducere(vanzare)}')
+    if vanzare is None:
+        print("Vanzare inexistatenta.")
+    else:
+        print(f'Titlu: {get_titlu(vanzare)}')
+        print(f'Gen: {get_gen(vanzare)}')
+        print(f'Pret: {get_pret(vanzare)}')
+        print(f'Reducere: {get_reducere(vanzare)}')
 
 
 def handle_update(vanzari):
