@@ -1,17 +1,23 @@
 from Domain.Vanzare import get_str, get_titlu, get_reducere, get_pret, get_gen, creeaza_vanzare
 from Logic.crud import create, read, update, delete
+from Logic.functionalitati import aplicare_discount, modificare_gen
 
 
 def show_menu():
     print("1. CRUD")
     print("2. Aplicare dicount.")
-    print("3. Modifica vanzare")
-    print("4. Modifica genul cartii daca are un titlu dat")
+    print("3. Modifica genul cartii daca are un titlu dat")
+
     print("a. Afiseaza vanzarile")
     print("x. Iesire")
 
 
 def handle_add(vanzari):
+    """
+    Adauga in lista de vanzari o vanzare creata de utilizator.
+    :param vanzari: lista de vanzari
+    :return:
+    """
     id = input("Dati id: ")
     titlu = input("Dati titlu: ")
     gen = input("Dati gen: ")
@@ -21,11 +27,21 @@ def handle_add(vanzari):
 
 
 def handle_show_all(vanzari):
+    """
+    Afiseaza lista de vanzari
+    :param vanzari: lista de vanzari
+    :return:
+    """
     for vanzare in vanzari:
         print(get_str(vanzare))
 
 
 def handle_show_details(vanzari):
+    """
+    Afiseaza detaliile vanzarii cu un id dat de utilizator
+    :param vanzari: lista de vanzari
+    :return:
+    """
     id_vanzare = int(input('Dati id-ul vanzarii: '))
     vanzare = read(vanzari, id_vanzare)
     if vanzare is None:
@@ -38,6 +54,11 @@ def handle_show_details(vanzari):
 
 
 def handle_update(vanzari):
+    """
+    Actualizeaza detaliile unei vanzari al carui id este dat de utilizator.
+    :param vanzari:
+    :return:
+    """
     id = input("Dati id-ul vanzarii care se actualizeaza:  ")
     titlu = input("Dati noul titlu: ")
     gen = input("Dati  noul gen: ")
@@ -47,6 +68,11 @@ def handle_update(vanzari):
 
 
 def handle_delete(vanzari):
+    """
+    Sterge din lista de vanzari, vanzarea cu id-ul dat de utilizator
+    :param vanzari:
+    :return:
+    """
     id_vanzare = int(input('Dati id-ul vanzarii care se va sterge:'))
     return delete(vanzari, id_vanzare)
 
@@ -56,7 +82,7 @@ def handle_crud(vanzari):
         print('1.Adaugare vanzare.')
         print('2.Modificare vanzare.')
         print('3.Stergere vanzare.')
-        print('a.Afisare vanzare.')
+        print('a.Afisare vanzari.')
         print('d.Detaliile vanzarii.')
         print('b.Revenire.')
         optiune = input('Alegeti o optiune: ')
@@ -76,6 +102,25 @@ def handle_crud(vanzari):
             print('Optiune nevalida.')
     return vanzari
 
+def handle_discount(vanzari):
+    """
+    Aplica discount-urile silver si gold pe toate vanzarile din lista.
+    :param vanzari:
+    :return:
+    """
+    return aplicare_discount(vanzari)
+
+
+def handle_change_genre(vanzari):
+    """
+    Modifica genul vanzarii cu titlul dat de utilizator, cu un nou gen, dat de utilizator
+    :param vanzari:
+    :return:
+    """
+    titlu = input("Dati titlul cartii al carui gen doriti sa il modificati: ")
+    gen_nou = input("Dati genul cu care se va inlocui genul initial al vanzarii cu titlul 'titlu': ")
+    return modificare_gen(vanzari, titlu, gen_nou)
+
 
 def run_ui(vanzari):
     while True:
@@ -83,6 +128,10 @@ def run_ui(vanzari):
         optiune = input('Alegeti o optiune')
         if optiune == '1':
             vanzari = handle_crud(vanzari)
+        elif optiune == '2':
+            vanzari = handle_discount(vanzari)
+        elif optiune == '3':
+            vanzari = handle_change_genre(vanzari)
         elif optiune  == 'x':
             break
         else:
