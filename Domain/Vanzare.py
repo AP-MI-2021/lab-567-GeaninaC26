@@ -85,3 +85,8 @@ def set_new_genre(vanzare, new_genre):
     :return:
     """
     vanzare[2] = new_genre
+
+
+def get_id_by_title(vanzare, titlu):
+    if vanzare[1] == titlu :
+        return vanzare[0]

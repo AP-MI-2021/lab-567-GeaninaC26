@@ -30,6 +30,7 @@ def read(lst_vanzari, id_vanzare: int = None):
 
     if id_vanzare is None:
         return lst_vanzari
+
     for vanzare in lst_vanzari:
         if get_id(vanzare) == id_vanzare:
             return vanzare
@@ -65,6 +66,8 @@ def delete(lst_vanzari, id_vanzare: int):
     :param id_vanzare: id-ul vanzarii care se sterge
     :return: o lista fara vanzarea cu id-ul id_vanzare
     """
+    if read(lst_vanzari, id_vanzare ) is None:
+        raise ValueError(f'Nu exista o vanzare cu id-ul {id_vanzare}')
     new_vanzari = []
     for vanzare in lst_vanzari:
         if get_id(vanzare) != id_vanzare:

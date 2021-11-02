@@ -1,4 +1,4 @@
-from Domain.Vanzare import get_reducere, get_pret, set_new_price, get_titlu, set_new_genre
+from Domain.Vanzare import get_reducere, get_pret, set_new_price, get_titlu, set_new_genre, get_id_by_title
 
 
 def aplicare_discount(lst_vanzari):

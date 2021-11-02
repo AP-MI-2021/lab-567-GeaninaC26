@@ -67,8 +67,11 @@ def handle_delete(vanzari):
     :param vanzari:
     :return:
     """
-    id_vanzare = int(input('Dati id-ul vanzarii care se va sterge:'))
-    return delete(vanzari, id_vanzare)
+    try:
+        id_vanzare = input('Dati id-ul vanzarii care se va sterge:')
+        return delete(vanzari, id_vanzare)
+    except ValueError as ve:
+        print("Eroare ", ve)
 
 
 def handle_show_details(vanzari):
@@ -77,10 +80,10 @@ def handle_show_details(vanzari):
     :param vanzari: lista de vanzari
     :return:
     """
-    id_vanzare = int(input('Dati id-ul vanzarii: '))
+    id_vanzare = input('Dati id-ul vanzarii: ')
     vanzare = read(vanzari, id_vanzare)
     if vanzare is None:
-        print("Vanzare inexistatenta.")
+        print("Vanzare inexistenta.")
     else:
         print(f'Titlu: {get_titlu(vanzare)}')
         print(f'Gen: {get_gen(vanzare)}')
@@ -130,6 +133,7 @@ def handle_change_genre(vanzari):
     titlu = input("Dati titlul cartii al carui gen doriti sa il modificati: ")
     gen_nou = input("Dati genul cu care se va inlocui genul initial al vanzarii cu titlul 'titlu': ")
     return modificare_gen(vanzari, titlu, gen_nou)
+
 
 
 def run_ui(vanzari):
