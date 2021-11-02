@@ -6,9 +6,11 @@ from Logic.functionalitati import aplicare_discount, modificare_gen
 def show_menu():
     print("1. CRUD")
     print("2. Aplicare dicount.")
-    print("3. Modifica genul cartii daca are un titlu dat")
-
-    print("a. Afiseaza vanzarile")
+    print("3. Modifica genul cartii daca are un titlu dat.")
+    print("4. Determinarea pretului minim pentru fiecare gen.")
+    print("5. Ordonarea vanzarilor crescator dupa pret.")
+    print("6. Afișarea numărului de titluri distincte pentru fiecare gen.")
+    print("a. Afiseaza vanzarile.")
     print("x. Iesire")
 
 
@@ -18,12 +20,16 @@ def handle_add(vanzari):
     :param vanzari: lista de vanzari
     :return:
     """
-    id = input("Dati id: ")
-    titlu = input("Dati titlu: ")
-    gen = input("Dati gen: ")
-    pret = float(input("Dati pretul: "))
-    reducere = input("Dati reducere: ")
-    return create(vanzari, id, titlu, gen, pret, reducere)
+    try:
+        id = input("Dati id: ")
+        titlu = input("Dati titlu: ")
+        gen = input("Dati gen: ")
+        pret = float(input("Dati pretul: "))
+        reducere = input("Dati reducere: ")
+        return create(vanzari, id, titlu, gen, pret, reducere)
+    except ValueError as ve:
+        print("Eroare: ", ve)
+    return vanzari
 
 
 def handle_show_all(vanzari):
@@ -34,6 +40,35 @@ def handle_show_all(vanzari):
     """
     for vanzare in vanzari:
         print(get_str(vanzare))
+
+
+
+def handle_update(vanzari):
+    """
+    Actualizeaza detaliile unei vanzari al carui id este dat de utilizator.
+    :param vanzari:
+    :return:
+    """
+    try:
+        id = input("Dati id-ul vanzarii care se actualizeaza:  ")
+        titlu = input("Dati noul titlu: ")
+        gen = input("Dati  noul gen: ")
+        pret = float(input("Dati noul pret: "))
+        reducere = input("Dati noua reducere: ")
+        new_vanzare = creeaza_vanzare(id,titlu,gen, pret, reducere)
+        return update(vanzari, new_vanzare)
+    except ValueError as ve:
+        print("Eroare", ve)
+
+
+def handle_delete(vanzari):
+    """
+    Sterge din lista de vanzari, vanzarea cu id-ul dat de utilizator
+    :param vanzari:
+    :return:
+    """
+    id_vanzare = int(input('Dati id-ul vanzarii care se va sterge:'))
+    return delete(vanzari, id_vanzare)
 
 
 def handle_show_details(vanzari):
@@ -51,31 +86,6 @@ def handle_show_details(vanzari):
         print(f'Gen: {get_gen(vanzare)}')
         print(f'Pret: {get_pret(vanzare)}')
         print(f'Reducere: {get_reducere(vanzare)}')
-
-
-def handle_update(vanzari):
-    """
-    Actualizeaza detaliile unei vanzari al carui id este dat de utilizator.
-    :param vanzari:
-    :return:
-    """
-    id = input("Dati id-ul vanzarii care se actualizeaza:  ")
-    titlu = input("Dati noul titlu: ")
-    gen = input("Dati  noul gen: ")
-    pret = float(input("Dati noul pret: "))
-    reducere = input("Dati noua reducere: ")
-    return update(vanzari, creeaza_vanzare(id,titlu,gen,pret,reducere))
-
-
-def handle_delete(vanzari):
-    """
-    Sterge din lista de vanzari, vanzarea cu id-ul dat de utilizator
-    :param vanzari:
-    :return:
-    """
-    id_vanzare = int(input('Dati id-ul vanzarii care se va sterge:'))
-    return delete(vanzari, id_vanzare)
-
 
 def handle_crud(vanzari):
     while True:

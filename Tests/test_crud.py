@@ -13,20 +13,29 @@ def test_create():
     vanzari = get_data()
     params = (5, 'Franklin', 'Copii', 43, 'none')
     vn= creeaza_vanzare(*params)
-    new_vanzare = create(vanzari, *params )
-    assert len(new_vanzare) == len(vanzari) + 1
-    assert vn in new_vanzare
+    new_vanzari = create(vanzari, *params )
+    assert len(new_vanzari) == len(vanzari) + 1
+    assert vn in new_vanzari
+
+    #testam daca se lanseaza exceptie pt id duplicat
+    params2 = (5, 'Franklin', 'Copii', 43, 'none')
+    try:
+        _ = create(new_vanzari, *params2)
+        assert False
+    except ValueError:
+        assert True
 
 
 def test_read():
     vanzari = get_data()
     some_v = vanzari[2]
     assert read(vanzari, get_id(some_v)) == some_v
+    assert read(vanzari, None) == vanzari
 
 
 def test_update():
     vanzari = get_data()
-    v_updated = creeaza_vanzare(6, 'Geronimo Stilton', 'Copii', 60, 'gold')
+    v_updated = creeaza_vanzare(2, 'Geronimo Stilton', 'Copii', 60, 'gold')
     updated = update(vanzari, v_updated)
     assert v_updated in updated
     assert v_updated not in vanzari

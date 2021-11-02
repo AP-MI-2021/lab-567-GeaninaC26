@@ -12,6 +12,8 @@ def create(lst_vanzari, id_vanzare, titlu, gen, pret, reducere):
     :param reducere: reducerea clientului
     :return:
     """
+    if read(lst_vanzari, id_vanzare ) is not None:
+        raise ValueError(f'Exista deja o vanzare cu id-ul {id_vanzare}')
     vanzare = creeaza_vanzare(id_vanzare, titlu, gen, pret, reducere)
     return lst_vanzari + [vanzare]
 
@@ -21,26 +23,39 @@ def read(lst_vanzari, id_vanzare: int = None):
     Citeste vanzarea
     :param lst_vanzari: lista de vanzari
     :param id_vanzare: id-ul vanzarii pe care dorim sa o citim
-    :return: vanzarea cu id-ul id_vanzare, sau None daca vanzarea nu exista
+    :return: -vanzarea cu id-ul id_vanzare
+             -None daca nu exista o vanzare cu id_prajitura
+             -lista de vanzari, daca id_vanzare = None
     """
+
+    if id_vanzare is None:
+        return lst_vanzari
     for vanzare in lst_vanzari:
-        if int(get_id(vanzare)) == id_vanzare:
+        if get_id(vanzare) == id_vanzare:
             return vanzare
     return None
 
 
 def update(lst_vanzari, new_vanzare):
-    """
-    Actualizeaza o
-    :param lst_vanzari: lista de vanzari
-    :param new_vanzare: vanzarea cu care se va actualiza - id-ul trebuie sa fie unul existent
-    :return: lista cu vanzarile actualizare
-    """
+    '''
+    Modifica vanzarea cu id-ul dat
+    :param id:
+    :param titlu_carte:
+    :param gen_carte:
+    :param pret:
+    :param tip_reducere:
+    :return:
+    '''
+    if read(lst_vanzari, get_id(new_vanzare) ) is None:
+        raise ValueError(f'Nu exista o vanzare cu id-ul {get_id(new_vanzare)}')
     new_vanzari = []
     for vanzare in lst_vanzari:
-        if get_id(vanzare) != get_id(new_vanzare):
+        if get_id(vanzare) == get_id(new_vanzare):
             new_vanzari.append(new_vanzare)
+        else:
+            new_vanzari.append(vanzare)
     return new_vanzari
+
 
 
 def delete(lst_vanzari, id_vanzare: int):
