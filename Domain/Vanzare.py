@@ -66,3 +66,22 @@ def get_reducere(vanzare):
 def get_str(vanzare):
     return f'Vanzarea cu id {get_id(vanzare)}, titlu {get_titlu(vanzare)}, gen {get_gen(vanzare)}, pret {get_pret(vanzare)}, reducere {get_reducere(vanzare)}'
 
+
+def price_change(vanzare, new_price):
+    """
+    Inlocuieste pretul vanzarii cu un nou pret.
+    :param vanzare: vanzarea
+    :param new_price: pretul cu care se inlocuieste pretul initial.
+    :return:
+    """
+    vanzare[3] = new_price
+
+
+def schimba_gen(vanzare, gen_nou):
+    """
+    Inlocuieste genul vanzarii cu un nou pret.
+    :param vanzare: vanzarea
+    :param gen_nou: genul cu care se inlocuieste genul initial.
+    :return:
+    """
+    vanzare[2] = gen_nou

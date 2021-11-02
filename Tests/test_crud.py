@@ -1,7 +1,6 @@
 from Domain.Vanzare import creeaza_vanzare, get_id
 from Logic.crud import create, read, update, delete
 
-
 def get_data():
     return [
         creeaza_vanzare(1, 'Morometii', 'Roman', 35, 'silver'),
