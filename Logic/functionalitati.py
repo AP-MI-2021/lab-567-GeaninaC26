@@ -1,4 +1,4 @@
-from Domain.Vanzare import get_reducere, get_pret, set_new_price, get_titlu, set_new_genre, get_id_by_title
+from Domain.Vanzare import get_reducere, get_pret, set_new_price, get_titlu, set_new_genre, get_id_by_title, get_gen
 
 
 def aplicare_discount(lst_vanzari):
@@ -33,3 +33,19 @@ def modificare_gen(lst_vanzari, titlu, gen_nou):
     return lst_vanzari
 
 
+def determinare_pret_minim(lst_vanzari):
+    """
+    Determina pretul minim pentru fiecare gen.
+    :param lst_vanzari: lista de vanzari
+    :return:
+    """
+    result = {}
+    for vanzare in lst_vanzari:
+        gen = get_gen(vanzare)
+        pret = get_pret(vanzare)
+        if gen in result:
+            if pret < result[gen]:
+                result[gen] = pret
+        else:
+            result[gen] = pret
+    return result

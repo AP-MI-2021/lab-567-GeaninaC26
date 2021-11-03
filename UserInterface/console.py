@@ -1,6 +1,6 @@
 from Domain.Vanzare import get_str, get_titlu, get_reducere, get_pret, get_gen, creeaza_vanzare
 from Logic.crud import create, read, update, delete
-from Logic.functionalitati import aplicare_discount, modificare_gen
+from Logic.functionalitati import aplicare_discount, modificare_gen, determinare_pret_minim
 
 
 def show_menu():
@@ -59,6 +59,7 @@ def handle_update(vanzari):
         return update(vanzari, new_vanzare)
     except ValueError as ve:
         print("Eroare", ve)
+    return vanzari
 
 
 def handle_delete(vanzari):
@@ -72,6 +73,7 @@ def handle_delete(vanzari):
         return delete(vanzari, id_vanzare)
     except ValueError as ve:
         print("Eroare ", ve)
+    return vanzari
 
 
 def handle_show_details(vanzari):
@@ -135,6 +137,12 @@ def handle_change_genre(vanzari):
     return modificare_gen(vanzari, titlu, gen_nou)
 
 
+def handle_min_price(vanzari):
+    rezultat = determinare_pret_minim(vanzari)
+    for cheie in rezultat:
+        print(cheie, ":", rezultat[cheie], "lei")
+    return vanzari
+
 
 def run_ui(vanzari):
     while True:
@@ -146,6 +154,8 @@ def run_ui(vanzari):
             vanzari = handle_discount(vanzari)
         elif optiune == '3':
             vanzari = handle_change_genre(vanzari)
+        elif optiune == '4':
+            vanzari = handle_min_price(vanzari)
         elif optiune  == 'x':
             break
         else:

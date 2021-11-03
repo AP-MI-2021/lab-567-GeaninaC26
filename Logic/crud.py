@@ -73,3 +73,14 @@ def delete(lst_vanzari, id_vanzare: int):
         if get_id(vanzare) != id_vanzare:
             new_vanzari.append(vanzare)
     return new_vanzari
+
+
+def generare():
+    vanzari = []
+    vanzari = create(vanzari, '1', 'Harry Potter', 'Fictiune', 45, 'silver')
+    vanzari = create(vanzari, '2', 'La rascruce de vanturi', 'Roman', 35, 'none')
+    vanzari = create(vanzari, '3', 'Moara cu noroc', 'Fictiune', 20, 'gold')
+    vanzari = create(vanzari, '4', 'Ion', 'Realism', 30, 'none')
+    vanzari = create(vanzari, '5', 'Descult', 'Roman', 50, 'silver')
+
+    return vanzari
