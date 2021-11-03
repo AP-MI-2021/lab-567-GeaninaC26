@@ -16,21 +16,21 @@ def program(vanzari):
                     if len(option) != 6:
                         print("Optiune nevalida.")
                     else:
-                        create(vanzari,option[1],option[2],option[3],option[4],option[5])
+                        create(vanzari, option[1], option[2], option[3], option[4], option[5])
                 except KeyError as k:
                     print("eroare", k)
-            elif option == 'delete':
+            elif option[0] == 'delete':
                 try:
                     if len(option) != 2:
-                        print("Optiune nevalida.")
+                        print("Optiune-nevalida.")
                     else:
                         delete(vanzari, option[1])
                 except KeyError as k:
                     print("Eroare", k)
-            elif option == 'show_all':
+            elif option[0] == 'show_all':
                 try:
                     if len(option) != 1:
-                        print("Optiune nevalida")
+                        print("Optiune-nevalida")
                     else:
                         for vanzare in vanzari:
                             print(get_str(vanzare))
