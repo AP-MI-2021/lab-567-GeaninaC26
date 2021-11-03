@@ -36,5 +36,4 @@ def program(vanzari):
                             print(get_str(vanzare))
                 except KeyError as k:
                     print("Eroare:" , k)
-            else:
-                print("Optiune nevalida.")
+
