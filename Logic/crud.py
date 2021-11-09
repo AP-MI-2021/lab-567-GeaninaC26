@@ -1,7 +1,7 @@
 from Domain.Vanzare import creeaza_vanzare, get_id
 
 
-def create(lst_vanzari, id_vanzare, titlu, gen, pret, reducere):
+def create(lst_vanzari, id_vanzare, titlu, gen, pret, reducere, undo_list: list, redo_list: list):
     """
     Adauga o vanzare in lista.
     :param lst_vanzari: lista de vanzari
@@ -10,11 +10,18 @@ def create(lst_vanzari, id_vanzare, titlu, gen, pret, reducere):
     :param gen: genul cartii
     :param pret: pretul cartii
     :param reducere: reducerea clientului
+    :param undo_list:
+    :param redo_list:
     :return:
     """
     if read(lst_vanzari, id_vanzare ) is not None:
         raise ValueError(f'Exista deja o vanzare cu id-ul {id_vanzare}')
+
     vanzare = creeaza_vanzare(id_vanzare, titlu, gen, pret, reducere)
+
+    undo_list.append(lst_vanzari)
+    redo_list.clear()
+
     return lst_vanzari + [vanzare]
 
 
@@ -37,7 +44,7 @@ def read(lst_vanzari, id_vanzare: int = None):
     return None
 
 
-def update(lst_vanzari, new_vanzare):
+def update(lst_vanzari, new_vanzare, undo_list, redo_list):
     '''
     Modifica vanzarea cu id-ul dat
     :param id:
@@ -55,11 +62,13 @@ def update(lst_vanzari, new_vanzare):
             new_vanzari.append(new_vanzare)
         else:
             new_vanzari.append(vanzare)
+    undo_list.append(lst_vanzari)
+    redo_list.clear()
     return new_vanzari
 
 
 
-def delete(lst_vanzari, id_vanzare: int):
+def delete(lst_vanzari, id_vanzare: int, undo_list, redo_list):
     """
     Sterge din lista de vanzari, vanzarea cu id-ul id_vanzare
     :param lst_vanzari: lista de vanzari
@@ -72,15 +81,17 @@ def delete(lst_vanzari, id_vanzare: int):
     for vanzare in lst_vanzari:
         if get_id(vanzare) != id_vanzare:
             new_vanzari.append(vanzare)
+    undo_list.append(lst_vanzari)
+    redo_list.clear()
     return new_vanzari
 
 
 def generare():
     vanzari = []
-    vanzari = create(vanzari, '1', 'Harry Potter', 'Fictiune', 45, 'silver')
-    vanzari = create(vanzari, '2', 'La rascruce de vanturi', 'Roman', 35, 'none')
-    vanzari = create(vanzari, '3', 'Moara cu noroc', 'Fictiune', 20, 'gold')
-    vanzari = create(vanzari, '4', 'Ion', 'Realism', 30, 'none')
-    vanzari = create(vanzari, '5', 'Descult', 'Roman', 50, 'silver')
+    vanzari = create(vanzari, '1', 'Harry Potter', 'Fictiune', 45, 'silver', [], [])
+    vanzari = create(vanzari, '2', 'La rascruce de vanturi', 'Roman', 35, 'none', [], [])
+    vanzari = create(vanzari, '3', 'Moara cu noroc', 'Fictiune', 20, 'gold', [], [])
+    vanzari = create(vanzari, '4', 'Ion', 'Realism', 30, 'none', [], [])
+    vanzari = create(vanzari, '5', 'Descult', 'Roman', 50, 'silver', [], [])
 
     return vanzari

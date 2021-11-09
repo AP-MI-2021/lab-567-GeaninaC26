@@ -1,3 +1,4 @@
+
 def creeaza_vanzare(id_vanzare, titlu, gen, pret, reducere):
     """
     Creeaza vanzarea
