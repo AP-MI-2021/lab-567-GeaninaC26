@@ -57,7 +57,7 @@ def determinare_pret_minim(lst_vanzari):
 
 def sortare_in_functie_de_pret(lst_vanzari, undo_list: list, redo_list: list):
     '''
-    Functie care sorteaza lista crescator in functie de pret
+    Sorteaza lista crescator in functie de pret.
     :param lista: lista de vanzari
     :return: lista de vanzari sortata
     '''
@@ -80,7 +80,7 @@ def nr_titluri_gen(gen, lst_vanzari):
 
 def nr_titluri_distincte_pe_gen(lst_vanzari):
     '''
-    Functie care determina pentru fiecare gen, numarul de titluri distincte
+    Determina pentru fiecare gen, numarul de titluri distincte
     :param lista: lista de vanzari
     :return: dictionar care are ca si cheie numele genului,
     iar ca valoare numarul de titluri distincte pentru acel gen
@@ -94,26 +94,26 @@ def nr_titluri_distincte_pe_gen(lst_vanzari):
     return rezultat
 
 
-def do_undo(undo_list: list, redo_list: list):
+def do_undo(undo_list: list, redo_list: list, vanzari):
     '''
 
-    :param undo_list:
-    :param redo_list:
+    :param undo_list:lista cu actiunile facute
+    :param redo_list:lista cu actiunile anulate
     '''
     if undo_list:
         top_undo = undo_list.pop()
-        redo_list.append(top_undo)
+        redo_list.append(vanzari)
         return top_undo
     return None
 
 
-def do_redo(undo_list:list, redo_list: list):
+def do_redo(undo_list:list, redo_list: list, vanzari):
     '''
-    :params undo_list:
-    :params redo_list:
+    :params undo_list: lista cu actiunile facute
+    :params redo_list: lista cu actiunile anulate
     '''
     if redo_list:
         top_redo = redo_list.pop()
-        redo_list.append(top_redo)
+        redo_list.append(vanzari)
         return top_redo
     return None

@@ -42,6 +42,7 @@ def test_sortare_in_functie_de_pret():
     assert get_pret(lista[0]) < get_pret(lista[1])
     assert get_id(lista[1]) == "4"
 
+
 def test_nr_titluri_distincte_pe_gen():
     lista = generare()
     rezultat = nr_titluri_distincte_pe_gen(lista)

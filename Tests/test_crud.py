@@ -42,7 +42,6 @@ def test_update():
     assert len(updated) == len(vanzari)
 
 
-
 def test_delete():
     vanzari = get_data()
     to_delete = 3

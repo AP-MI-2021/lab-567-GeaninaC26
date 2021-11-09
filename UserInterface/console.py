@@ -101,6 +101,8 @@ def handle_crud(vanzari, undo_list, redo_list):
         print('3.Stergere vanzare.')
         print('a.Afisare vanzari.')
         print('d.Detaliile vanzarii.')
+        print("u. Undo.")
+        print("r. Redo.")
         print('b.Revenire.')
         optiune = input('Alegeti o optiune: ')
         if optiune == '1':
@@ -115,6 +117,11 @@ def handle_crud(vanzari, undo_list, redo_list):
             handle_show_details(vanzari)
         elif optiune == 'b':
             break
+        elif optiune == 'u':
+            vanzari = handle_undo(vanzari, undo_list, redo_list)
+        elif optiune == 'r':
+            vanzari = handle_redo(vanzari, undo_list, redo_list)
+
         else:
             print('Optiune nevalida.')
     return vanzari
@@ -171,14 +178,14 @@ def handle_nr_titluri_distincte_per_gen(vanzari):
 
 
 def handle_undo(vanzari,undo_list,redo_list):
-    undo_result=do_undo(undo_list,redo_list)
+    undo_result=do_undo(undo_list,redo_list, vanzari)
     if undo_result is not None:
         return undo_result
     return vanzari
 
 
 def handle_redo(vanzari,undo_list,redo_list):
-    redo_result = do_redo(undo_list, redo_list)
+    redo_result = do_redo(undo_list, redo_list, vanzari)
     if redo_result is not None:
         return redo_result
     return vanzari

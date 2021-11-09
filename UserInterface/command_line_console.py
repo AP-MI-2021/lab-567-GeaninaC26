@@ -28,22 +28,22 @@ def meniu(vanzari):
         if optiune == 'stop':
             break
         for elem in task:
-            comenzi = elem.split(', ')
-            if comenzi[0].lower() == 'help':
+            comanda = elem.split(', ')
+            if comanda[0].lower() == 'help':
                 help()
-            elif comenzi[0].lower() == 'add':
+            elif comanda[0].lower() == 'add':
                 try:
-                    vanzari = create(vanzari, comenzi[1], comenzi[2], comenzi[3], comenzi[4], comenzi[5])
+                    vanzari = create(vanzari, comanda[1], comanda[2], comanda[3], comanda[4], comanda[5])
                 except ValueError as ve:
                     print("Eroare : ", ve)
-            elif comenzi[0].lower() == 'delete':
+            elif comanda[0].lower() == 'delete':
                 try:
-                    vanzari = delete(vanzari, comenzi[1])
+                    vanzari = delete(vanzari, comanda[1])
                 except ValueError as ve:
                     print("Eroare : ", ve)
             elif comenzi[0].lower() == "update":
-                vanzari = update(vanzari, comenzi[1], comenzi[2], comenzi[3], comenzi[4], comenzi[5])
-            elif comenzi[0].lower() == 'show_all':
+                vanzari = update(vanzari, comanda[1], comanda[2], comanda[3], comanda[4], comanda[5])
+            elif comanda[0].lower() == 'show_all':
                 show_all(vanzari)
             else:
                 print("Optiune invalida! Alegeti alta sau incercati help pentru mai multe indicatii")

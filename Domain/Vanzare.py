@@ -18,7 +18,6 @@ def creeaza_vanzare(id_vanzare, titlu, gen, pret, reducere):
     ]
 
 
-
 def get_id(vanzare):
     """
     Getter pentru id-ul vanzarii.
