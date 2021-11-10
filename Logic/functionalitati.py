@@ -114,6 +114,6 @@ def do_redo(undo_list:list, redo_list: list, vanzari):
     '''
     if redo_list:
         top_redo = redo_list.pop()
-        redo_list.append(vanzari)
+        undo_list.append(vanzari)
         return top_redo
     return None

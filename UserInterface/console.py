@@ -194,7 +194,7 @@ def handle_redo(vanzari,undo_list,redo_list):
 def run_ui(vanzari, undo_list, redo_list):
     while True:
         show_menu()
-        optiune = input('Alegeti o optiune')
+        optiune = input('Alegeti o optiune: ')
         if optiune == '1':
             vanzari = handle_crud(vanzari, undo_list, redo_list)
         elif optiune == '2':

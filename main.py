@@ -14,7 +14,7 @@ def main():
     vanzari = create(vanzari, '4', 'Ion', 'Realism', 30, 'none', undo_list, redo_list)
     vanzari = create(vanzari, '5', 'Descult', 'Roman', 50, 'silver', undo_list, redo_list)
     vanzari = run_ui(vanzari, undo_list, redo_list)
-    
+
 
 if __name__ == '__main__':
     test()
