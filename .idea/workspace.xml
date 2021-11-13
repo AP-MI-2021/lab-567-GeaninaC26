@@ -3,11 +3,8 @@
   <component name="ChangeListManager">
     <list default="true" id="7ab34a41-9fb0-4620-b9da-0677cad55a0f" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Logic/functionalitati.py" beforeDir="false" afterPath="$PROJECT_DIR$/Logic/functionalitati.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tests/test_functionalitati.py" beforeDir="false" afterPath="$PROJECT_DIR$/Tests/test_functionalitati.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tests/test_undo_redo.py" beforeDir="false" afterPath="$PROJECT_DIR$/Tests/test_undo_redo.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Logic/crud.py" beforeDir="false" afterPath="$PROJECT_DIR$/Logic/crud.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/UserInterface/command_line_console.py" beforeDir="false" afterPath="$PROJECT_DIR$/UserInterface/command_line_console.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/UserInterface/console.py" beforeDir="false" afterPath="$PROJECT_DIR$/UserInterface/console.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

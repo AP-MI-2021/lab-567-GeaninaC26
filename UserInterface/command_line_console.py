@@ -36,8 +36,11 @@ def meniu(vanzari):
             elif comanda[0].lower() == 'add':
                 try:
                     if len(comanda) == 6:
-                        vanzari = create(vanzari, comanda[1], comanda[2], comanda[3], float(comanda[4]), comanda[5], undo_list, redo_list)
-                        print("Vanzarea a fost adaugata.")
+                        if comanda[5] == 'none' or comanda[5] == 'silver' or comanda[5] == 'gold':
+                            vanzari = create(vanzari, comanda[1], comanda[2], comanda[3], float(comanda[4]), comanda[5], undo_list, redo_list)
+                            print("Vanzarea a fost adaugata.")
+                        else:
+                            print('Tip de reducere inexistent')
                     else:
                         print('Nu s-a putut adauga vanzarea: numar incorect de parametri.')
                 except ValueError as ve:

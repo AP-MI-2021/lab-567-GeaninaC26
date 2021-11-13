@@ -1,4 +1,4 @@
-from Domain.Vanzare import creeaza_vanzare, get_id
+from Domain.Vanzare import creeaza_vanzare, get_id, get_reducere
 
 
 def create(lst_vanzari, id_vanzare, titlu, gen, pret, reducere, undo_list: list, redo_list: list):
@@ -16,7 +16,8 @@ def create(lst_vanzari, id_vanzare, titlu, gen, pret, reducere, undo_list: list,
     """
     if read(lst_vanzari, id_vanzare ) is not None:
         raise ValueError(f'Exista deja o vanzare cu id-ul {id_vanzare}')
-
+    if reducere != 'silver' and reducere != 'gold' and reducere != 'none':
+        raise ValueError(f'Tip reducere incorect')
     vanzare = creeaza_vanzare(id_vanzare, titlu, gen, pret, reducere)
 
     undo_list.append(lst_vanzari)
