@@ -1,4 +1,4 @@
-from Domain.Vanzare import get_str
+from Domain.Vanzare import get_str, creeaza_vanzare
 from Logic.crud import create, delete, update
 
 
@@ -22,6 +22,8 @@ def show_all(vanzari):
 
 def meniu(vanzari):
     while True:
+        undo_list = []
+        redo_list = []
         print("Pentru ajutor, tastati 'help;")
         optiune = input("Dati optiunea:  ")
         task = optiune.split("; ")
@@ -33,17 +35,35 @@ def meniu(vanzari):
                 help()
             elif comanda[0].lower() == 'add':
                 try:
-                    vanzari = create(vanzari, comanda[1], comanda[2], comanda[3], comanda[4], comanda[5])
+                    if len(comanda) == 6:
+                        vanzari = create(vanzari, comanda[1], comanda[2], comanda[3], float(comanda[4]), comanda[5], undo_list, redo_list)
+                        print("Vanzarea a fost adaugata.")
+                    else:
+                        print('Nu s-a putut adauga vanzarea: numar incorect de parametri.')
                 except ValueError as ve:
                     print("Eroare : ", ve)
             elif comanda[0].lower() == 'delete':
                 try:
-                    vanzari = delete(vanzari, comanda[1])
+                    if len(comanda) == 2:
+                        vanzari = delete(vanzari, comanda[1], undo_list, redo_list)
+                        print("Vanzarea a fost stearsa.")
+                    else:
+                        print('Nu s-a putut sterge vanzarea: numar incorect de parametri.')
                 except ValueError as ve:
                     print("Eroare : ", ve)
-            elif comenzi[0].lower() == "update":
-                vanzari = update(vanzari, comanda[1], comanda[2], comanda[3], comanda[4], comanda[5])
+            elif comanda[0].lower() == "update":
+                try:
+                    if len(comanda) == 6:
+                        vanzari = update(vanzari, creeaza_vanzare( comanda[1], comanda[2], comanda[3], comanda[4], comanda[5]), undo_list, redo_list)
+                        print("Vanzarea a fost modificata.")
+                    else:
+                        print('Nu s-a putut modifica vanzarea: numar incorect de parametri.')
+                except ValueError as ve:
+                    print("Error", ve)
             elif comanda[0].lower() == 'show_all':
-                show_all(vanzari)
+                if len(comanda) == 1:
+                    show_all(vanzari)
+                else:
+                    print('Nu s-a putut afisa lista completa de vanzari: numar incorect de parametri.')
             else:
                 print("Optiune invalida! Alegeti alta sau incercati help pentru mai multe indicatii")

@@ -1,5 +1,5 @@
-from Domain.Vanzare import get_reducere, get_pret, set_new_price, get_titlu, set_new_genre, get_id_by_title, get_gen
-
+from Domain.Vanzare import get_reducere, get_pret, set_new_price, get_titlu, get_id, get_id_by_title, get_gen, creeaza_vanzare
+from Logic.crud import update
 
 def aplicare_discount(lst_vanzari, undo_list: list, redo_list: list):
     """
@@ -7,18 +7,29 @@ def aplicare_discount(lst_vanzari, undo_list: list, redo_list: list):
     :param lst_vanzari: lista de vanzari
     :return: lista cu preturile reduse
     """
-    undo_list.append(lst_vanzari)
-    redo_list.clear()
+    new_lst = []
     for vanzare in lst_vanzari:
         if get_reducere(vanzare) == 'silver':
-            price = get_pret(vanzare)
-            new_price = price - 0.05*price
-            set_new_price(vanzare, new_price)
-        if get_reducere(vanzare) == 'gold':
-            price = get_pret(vanzare)
-            new_price = price - 0.1 * price
-            set_new_price(vanzare, new_price)
-    return lst_vanzari
+            id = get_id(vanzare)
+            titlu = get_titlu(vanzare)
+            gen = get_gen(vanzare)
+            price = get_pret(vanzare)- get_pret(vanzare) * 0.05
+            reducere = get_reducere(vanzare)
+            vanzare_noua = creeaza_vanzare(id, titlu,gen,price, reducere)
+            new_lst.append(vanzare_noua)
+        elif get_reducere(vanzare) == 'gold':
+            id = get_id(vanzare)
+            titlu = get_titlu(vanzare)
+            gen = get_gen(vanzare)
+            price = get_pret(vanzare) - get_pret(vanzare) * 0.1
+            reducere = get_reducere(vanzare)
+            vanzare_noua = creeaza_vanzare(id, titlu, gen, price, reducere)
+            new_lst.append(vanzare_noua)
+        else:
+            new_lst.append(vanzare)
+    undo_list.append(lst_vanzari)
+    redo_list.clear()
+    return new_lst
 
 
 def modificare_gen(lst_vanzari, titlu, gen_nou, undo_list: list, redo_list: list):
@@ -31,9 +42,20 @@ def modificare_gen(lst_vanzari, titlu, gen_nou, undo_list: list, redo_list: list
     """
     undo_list.append(lst_vanzari)
     redo_list.clear()
+    check = 0
     for vanzare in lst_vanzari:
-        if get_titlu(vanzare) == titlu:
-            set_new_genre(vanzare,gen_nou)
+        title = get_titlu(vanzare)
+        if title == titlu:
+            check = 1
+    if check == 0:
+        print(f'Nu exista o vanzare cu titlul {titlu}')
+    else:
+        for vanzare in lst_vanzari:
+            if get_titlu(vanzare) == titlu:
+                id = get_id(vanzare)
+                pret = get_pret(vanzare)
+                reducere = get_reducere(vanzare)
+                lst_vanzari = update(lst_vanzari, creeaza_vanzare(id, titlu, gen_nou, pret, reducere), undo_list, redo_list)
     return lst_vanzari
 
 

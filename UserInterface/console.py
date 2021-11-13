@@ -132,7 +132,8 @@ def handle_discount(vanzari, undo_list, redo_list):
     :param vanzari:
     :return:
     """
-    return aplicare_discount(vanzari, undo_list, redo_list)
+    vanzari = aplicare_discount(vanzari, undo_list, redo_list)
+    return vanzari
 
 
 def handle_change_genre(vanzari, undo_list, redo_list):
@@ -141,9 +142,13 @@ def handle_change_genre(vanzari, undo_list, redo_list):
     :param vanzari:
     :return:
     """
-    titlu = input("Dati titlul cartii al carui gen doriti sa il modificati: ")
-    gen_nou = input("Dati genul cu care se va inlocui genul initial al vanzarii cu titlul 'titlu': ")
-    return modificare_gen(vanzari, titlu, gen_nou, undo_list, redo_list)
+    try:
+        titlu = input("Dati titlul cartii al carui gen doriti sa il modificati: ")
+        gen_nou = input("Dati genul cu care se va inlocui genul initial al vanzarii cu titlul 'titlu': ")
+        vanzari = modificare_gen(vanzari, titlu, gen_nou, undo_list, redo_list)
+        return vanzari
+    except ValueError as ve:
+        print("Eroare")
 
 
 def handle_min_price(vanzari):
